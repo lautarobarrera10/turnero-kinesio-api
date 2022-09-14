@@ -3,7 +3,7 @@
 include("condb.php");
 
 // Consultamos los usuarios de la base de datos
-$consulta_db = mysqli_query($connect, "SELECT * FROM users");
+$consulta_db = mysqli_query($connect, "SELECT * FROM $table_users");
 
 $users = [];
 
@@ -18,4 +18,14 @@ while ($user = mysqli_fetch_array($consulta_db)) {
 
 // Avisamos que devolvemos un json
 header( 'Content-Type: application/json' );
-echo json_encode( $users );
+
+// Validamos el método y respondemos
+$method = strtoupper($_SERVER['REQUEST_METHOD']);
+
+switch ($method) {
+    case 'GET':
+        echo json_encode( $users );
+        break;
+    case 'POST':
+        break;
+}
