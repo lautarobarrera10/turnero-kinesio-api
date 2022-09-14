@@ -13,7 +13,7 @@ while ($user = mysqli_fetch_array($consulta_db)) {
         'username' => $user['username'],
         'email' => $user['email']
     ];
-    array_push($respuesta_final, $array_in_array);
+    array_push($users, $array_in_array);
 }
 
 // Avisamos que devolvemos un json
